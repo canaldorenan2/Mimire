@@ -11,7 +11,9 @@ public class PlayerMove : NetworkBehaviour
     float moveSpeed = 15f;
     float horizontal;
     float vertical;
-    bool firstShot;
+    bool firstShot; 
+    [SerializeField]bool dancando;
+    [SerializeField]float tempoDanca;
 
     public ParticleSystem particulas;
     public GameObject Right;
@@ -21,7 +23,6 @@ public class PlayerMove : NetworkBehaviour
 
     Material lucian1;
 
-    SpawnControl spawn;
     public int score;
 
     public Animator animator;
@@ -36,6 +37,7 @@ public class PlayerMove : NetworkBehaviour
         Debug.Log("Oi");
         this.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().materials[0] = lucian1;
         cam.gameObject.SetActive(true);
+
     }
 
     private void Update()
@@ -49,16 +51,37 @@ public class PlayerMove : NetworkBehaviour
             if (Input.anyKey)
             {
                 animator.SetBool("Idle", false);
+                animator.SetBool("Dance", false);
+                tempoDanca = 0;
+                dancando = false;
+
                 ControlaAnimacao();
             }
             else
             {
-                animator.SetBool("Idle", true);
+
                 animator.SetBool("Run", false);
                 animator.SetBool("Atacar1", false);
                 animator.SetBool("Atacar2", false);
                 animator.SetBool("Ultimate", false);
                 firstShot = true;
+
+                if (dancando)
+                {
+                    tempoDanca += Time.deltaTime;
+
+                    if (tempoDanca > 3.0f)
+                    {
+                        animator.SetBool("Dance", false);
+                        tempoDanca = 0;
+                        dancando = false;
+                    }
+                }
+                else
+                {
+                    tempoDanca = 0;
+                    animator.SetBool("Idle", true);
+                }
             }
 
             ControlaEfeitos();
@@ -90,7 +113,8 @@ public class PlayerMove : NetworkBehaviour
                 GameObject bulletPrefabe = Instantiate(bullet, Right.transform.position, this.transform.localRotation);
                 
                 // Instancia o prefabe das particulas
-                ParticleSystem shot = Instantiate(particulas, Right.transform.position, this.transform.localRotation);
+                ParticleSystem shotEfect = Instantiate(particulas, Right.transform.position, this.transform.localRotation);
+                Destroy(shotEfect.gameObject, 1);
 
                 // Ajusta o prefabe
                 bulletPrefabe.transform.Rotate(90, 0, 0);
@@ -112,7 +136,8 @@ public class PlayerMove : NetworkBehaviour
                 GameObject bulletPrefabe = Instantiate(bullet, Left.transform.position, this.transform.localRotation);
 
                 // Instancia o prefabe das particulas
-                ParticleSystem shot = Instantiate(particulas, Left.transform.position, this.transform.localRotation);
+                ParticleSystem shotEfect = Instantiate(particulas, Left.transform.position, this.transform.localRotation);
+                Destroy(shotEfect.gameObject, 1);
 
                 // Ajusta o prefabe
                 bulletPrefabe.transform.Rotate(90, 0, 0);
@@ -156,9 +181,13 @@ public class PlayerMove : NetworkBehaviour
             animator.SetBool("Atacar1", true);
 
             animator.SetBool("Atacar2", false);
+        }
 
-
-
+        if (Input.GetKeyDown("h"))
+        {
+            Debug.Log("Teste");
+            animator.SetBool("Dance", true);
+            dancando = true;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -175,15 +204,7 @@ public class PlayerMove : NetworkBehaviour
             animator.SetBool("Ultimate", true);
             firstShot = true;
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "gema")
-        {
-            spawn.instanciado = false;
-            Destroy(spawn.instancia);
-            score++;
-        }
+        
     }
 }
