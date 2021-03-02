@@ -3226,8 +3226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8970340475437189395}
   - component: {fileID: 8932806709483892470}
-  - component: {fileID: -1906134466966375672}
-  - component: {fileID: -1564158958919097772}
+  - component: {fileID: 6185188712503005628}
+  - component: {fileID: 5031927976476625560}
   m_Layer: 0
   m_Name: Viergo1
   m_TagString: Untagged
@@ -3280,7 +3280,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-1906134466966375672
+--- !u!114 &6185188712503005628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3313,7 +3313,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &-1564158958919097772
+--- !u!114 &5031927976476625560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
