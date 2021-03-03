@@ -30,6 +30,8 @@ public class PlayerMove2 : NetworkBehaviour
 
     public Camera cam;
 
+    public int rotacao = 0;
+
     private void Start()
     {
         Debug.Log("Oi");
@@ -61,7 +63,7 @@ public class PlayerMove2 : NetworkBehaviour
 
                 animator.SetBool("Run", false);
                 animator.SetBool("Atacar1", false);
-                animator.SetBool("Atacar2", false);
+                animator.SetBool("Critico", false);
                 animator.SetBool("Ultimate", false);
 
                 if (dancando)
@@ -98,7 +100,7 @@ public class PlayerMove2 : NetworkBehaviour
             }
 
 
-            if (vida > 1)
+            if (vida < 1)
             {
                 animator.SetBool("Death", true);
             }
@@ -123,7 +125,27 @@ public class PlayerMove2 : NetworkBehaviour
                 Destroy(shotEfect.gameObject, 1);
 
                 // Ajusta o prefabe
-                bulletPrefabe.transform.Rotate(90, 0, 0);
+                bulletPrefabe.transform.Rotate(rotacao, 0, 0);
+
+                bulletPrefabe.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10000);
+            }
+        }
+
+        if (animator.GetBool("Critico") == true)
+        {
+
+            {
+                //Vector3 posInstanciaBullet = new Vector3(this.transform.forward.x , this.transform.forward.y, this.transform.forward.z);
+
+                // Instancia o prefabe da bala
+                GameObject bulletPrefabe = Instantiate(bullet, LocalDisparo.transform.position, this.transform.localRotation);
+
+                // Instancia o prefabe das particulas
+                ParticleSystem shotEfect = Instantiate(particulas, LocalDisparo.transform.position, this.transform.localRotation);
+                Destroy(shotEfect.gameObject, 1);
+
+                // Ajusta o prefabe
+                bulletPrefabe.transform.Rotate(rotacao, 0, 0);
 
                 bulletPrefabe.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10000);
             }
@@ -166,7 +188,7 @@ public class PlayerMove2 : NetworkBehaviour
             animator.SetBool("Critico", true);
         }
 
-        if (Input.GetKeyDown("h"))
+        if (Input.GetKeyDown("3") && Input.GetKey(KeyCode.LeftControl))
         {
             Debug.Log("Teste");
             animator.SetBool("Dance", true);

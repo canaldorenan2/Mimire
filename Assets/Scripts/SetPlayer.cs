@@ -12,7 +12,7 @@ public class SetPlayer : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
 
-        if (!isClient)
+        if (isClient)
         {
             Debug.Log("Deve spawnar a Senna");
             Instantiate(senna, transform.position, transform.rotation);

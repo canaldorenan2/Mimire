@@ -31,6 +31,8 @@ public class PlayerMove : NetworkBehaviour
 
     public Camera cam;
 
+    public int rotacao = 90;
+
     private void Start()
     {
         firstShot = false;
@@ -40,6 +42,12 @@ public class PlayerMove : NetworkBehaviour
 
     private void Update()
     {
+
+        if (vida < 1)
+        {
+            animator.SetBool("Death", true);
+        }
+
         //if (isLocalPlayer) // variavel de networkbehaviour
         {
             ControlaRotacao();
@@ -115,7 +123,7 @@ public class PlayerMove : NetworkBehaviour
                 Destroy(shotEfect.gameObject, 1);
 
                 // Ajusta o prefabe
-                bulletPrefabe.transform.Rotate(90, 0, 0);
+                bulletPrefabe.transform.Rotate(rotacao, 0, 0);
 
                 bulletPrefabe.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10000);
 
