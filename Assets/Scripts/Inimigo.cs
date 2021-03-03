@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Bullet : NetworkBehaviour
+public class Inimigo : NetworkBehaviour
 {
 
-
+    public int vida;
+    [SerializeField]Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this.gameObject, 2);
+        vida = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Inimigo")
+        if (vida > 1)
         {
-            other.GetComponent<Inimigo>().vida -= 50;
+            animator.SetBool("Death", true);
+            Destroy(this, 2);
         }
     }
 }

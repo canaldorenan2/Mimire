@@ -11,7 +11,9 @@ public class PlayerMove : NetworkBehaviour
     float moveSpeed = 15f;
     float horizontal;
     float vertical;
-    bool firstShot; 
+    bool firstShot;
+    int vida = 0;
+
     [SerializeField]bool dancando;
     [SerializeField]float tempoDanca;
 
@@ -29,20 +31,16 @@ public class PlayerMove : NetworkBehaviour
 
     public Camera cam;
 
-    public override void OnStartLocalPlayer()
+    private void Start()
     {
         firstShot = false;
-        //spawn = GameObject.Find("Spawn").GetComponent<SpawnControl>();
-        lucian1 = Resources.Load("Lucian/Lucian1", typeof(Material)) as Material;
-        Debug.Log("Oi");
-        this.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().materials[0] = lucian1;
         cam.gameObject.SetActive(true);
-
+        vida = 100;
     }
 
     private void Update()
     {
-        if (isLocalPlayer) // variavel de networkbehaviour
+        //if (isLocalPlayer) // variavel de networkbehaviour
         {
             ControlaRotacao();
 
@@ -160,6 +158,8 @@ public class PlayerMove : NetworkBehaviour
         Vector3 posicao = new Vector3(horizontal, 0, vertical);
 
         transform.Translate(posicao * Time.deltaTime * moveSpeed);
+
+        Debug.Log("w");
 
     }
 

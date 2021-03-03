@@ -2908,6 +2908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a165cf2264c55fc4cb5ba976c5d5ed4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dancando: 0
+  tempoDanca: 0
   particulas: {fileID: 576892674884155443, guid: 62fd6a9e38dc9724baf8a60c6a348c79,
     type: 3}
   Right: {fileID: 830575448}

@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 5334944005431238842}
   - component: {fileID: 3185153843356952734}
   - component: {fileID: 8860590030689902011}
+  - component: {fileID: -805668204169983248}
   m_Layer: 0
   m_Name: PlayerDefault
   m_TagString: Untagged
@@ -621,6 +622,20 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &-805668204169983248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794011588934937687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fdf2166ca4cbd4e8dc0b6fc5851bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  senna: {fileID: 2045683713363094814, guid: dcc19dd172e0ea242a7817801e1c82d7, type: 3}
+  lucian: {fileID: 8585070105572270419, guid: c1d2a83f9df64264eba1ce44be7d846f, type: 3}
 --- !u!1 &8606041673395028474
 GameObject:
   m_ObjectHideFlags: 0

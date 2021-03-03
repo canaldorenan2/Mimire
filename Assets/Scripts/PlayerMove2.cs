@@ -11,12 +11,14 @@ public class PlayerMove2 : NetworkBehaviour
     float horizontal;
     float vertical;
 
+    int vida;
+
     [SerializeField] bool dancando;
     [SerializeField] float tempoDanca;
 
     public ParticleSystem particulas;
 
-    public GameObject Right;
+    public GameObject LocalDisparo;
 
     public GameObject bullet;
 
@@ -28,18 +30,18 @@ public class PlayerMove2 : NetworkBehaviour
 
     public Camera cam;
 
-    public override void OnStartLocalPlayer()
+    private void Start()
     {
-
         Debug.Log("Oi");
-        this.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().materials[0] = lucian1;
         cam.gameObject.SetActive(true);
-
-    }
+        vida = 100;
+    }    
+        
+    
 
     private void Update()
     {
-        if (isLocalPlayer) // variavel de networkbehaviour
+        //if (isLocalPlayer) // variavel de networkbehaviour
         {
             ControlaRotacao();
 
@@ -94,7 +96,15 @@ public class PlayerMove2 : NetworkBehaviour
                 Debug.Log("Oi");
                 this.transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().materials[0] = lucian1;
             }
+
+
+            if (vida > 1)
+            {
+                animator.SetBool("Death", true);
+            }
         }
+
+
     }
 
     private void ControlaEfeitos()
@@ -106,10 +116,10 @@ public class PlayerMove2 : NetworkBehaviour
                 //Vector3 posInstanciaBullet = new Vector3(this.transform.forward.x , this.transform.forward.y, this.transform.forward.z);
 
                 // Instancia o prefabe da bala
-                GameObject bulletPrefabe = Instantiate(bullet, Right.transform.position, this.transform.localRotation);
+                GameObject bulletPrefabe = Instantiate(bullet, LocalDisparo.transform.position, this.transform.localRotation);
 
                 // Instancia o prefabe das particulas
-                ParticleSystem shotEfect = Instantiate(particulas, Right.transform.position, this.transform.localRotation);
+                ParticleSystem shotEfect = Instantiate(particulas, LocalDisparo.transform.position, this.transform.localRotation);
                 Destroy(shotEfect.gameObject, 1);
 
                 // Ajusta o prefabe
@@ -124,6 +134,8 @@ public class PlayerMove2 : NetworkBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        
 
         Vector3 posicao = new Vector3(horizontal, 0, vertical);
 
@@ -147,6 +159,11 @@ public class PlayerMove2 : NetworkBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetBool("Atacar1", true);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("Critico", true);
         }
 
         if (Input.GetKeyDown("h"))
