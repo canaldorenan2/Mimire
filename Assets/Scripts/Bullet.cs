@@ -17,7 +17,7 @@ public class Bullet : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.transform.Rotate(1 * Time.deltaTime, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)

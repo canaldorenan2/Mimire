@@ -197,6 +197,9 @@ GameObject:
   - component: {fileID: 1209741988640765666}
   - component: {fileID: -8033329500962617970}
   - component: {fileID: -7408205975309787644}
+  - component: {fileID: 2989845973020188396}
+  - component: {fileID: 903145592}
+  - component: {fileID: 9137948905523521962}
   m_Layer: 0
   m_Name: Walker2
   m_TagString: Untagged
@@ -299,6 +302,56 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &2989845973020188396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020062603652598717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2120520decaf6804abad6f9fc54e0d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 0
+  animator: {fileID: 1209741988640765666}
+  target: {fileID: 0}
+--- !u!65 &903145592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020062603652598717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 96.85425, y: 103.22714, z: 88.9055}
+  m_Center: {x: -6.2750244, y: 43.765457, z: 19.452742}
+--- !u!195 &9137948905523521962
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020062603652598717}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2160450612848196342
 GameObject:
   m_ObjectHideFlags: 0
